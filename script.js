@@ -38,6 +38,9 @@ function closeModal() {
  * Hides the top banner by adding the 'hide' class to it.
  */
 function closeTopBanner() {
+    // flag
+    sessionStorage.setItem("closeTopBanner", "true")
+
 	document.getElementById("top-banner").classList.add("hide");
 }
 
