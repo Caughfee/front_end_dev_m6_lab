@@ -1,3 +1,25 @@
+// searched up that navigator.doNotTrack is used for most browsers
+// navigator.globalPrivacyControl (GPC) is essentially DNT for firefox 
+if (navigator.doNotTrack === "1" || navigator.globalPrivacyControl === true) {
+    console.log("Do Not Track is enabled. Disabling tracking features.");
+
+    // Clear localStorage
+    localStorage.clear();
+
+    // Clear sessionStorage
+    sessionStorage.clear();
+
+    // Clear cookies properly by setting their expiration to the past
+    document.cookie.split(";").forEach(cookie => {
+        const [key] = cookie.split("=");
+        document.cookie = key + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    });
+
+    // Prevent further execution of banner and modal logic
+} else {
+    console.log("Do Not Track is not enabled. Proceeding with normal behavior.");
+}
+
 /**
  * Displays the top banner by removing the 'hide' class from it.
  * Uses a short delay to ensure the transition is triggered.
@@ -74,9 +96,7 @@ function closeFooterBanner() {
 // Event listeners to close the modal, top banner, and footer banner when 'x' is clicked
 document.getElementById("modal").addEventListener("click", closeModal);
 document.getElementById("top-banner").addEventListener("click", closeTopBanner);
-document
-	.getElementById("footer-banner")
-	.addEventListener("click", closeFooterBanner);
+document.getElementById("footer-banner").addEventListener("click", closeFooterBanner);
 
 // Show the footer banner after a delay of 1 second
 setTimeout(showFooterBanner, 1000);
@@ -86,14 +106,3 @@ setTimeout(showTopBanner, 2000);
 
 // Show the modal after a delay of 4 seconds
 setTimeout(showModal, 4000);
-
-function doNotTrack() {
-    // searched up that navigator.doNotTrack is used for most browsers
-    if (navigator.doNotTrack === "1") {
-        localStorage.clear();
-        sessionStorage.clear();
-        document.cookie = ""; // Clear cookies
-        console.log("Tracking features disabled due to 'Do Not Track'.");
-    }
-
-}
