@@ -29,7 +29,7 @@ function showModal() {
  */
 function closeModal() {
     // flag
-    localStorage.setItem("modalClosed", 'true')
+    localStorage.setItem("modalClosed", 'true');
 
 	document.getElementById("modal").classList.add("hide");
 }
@@ -39,7 +39,7 @@ function closeModal() {
  */
 function closeTopBanner() {
     // flag
-    sessionStorage.setItem("closeTopBanner", "true")
+    sessionStorage.setItem("closeTopBanner", "true");
 
 	document.getElementById("top-banner").classList.add("hide");
 }
@@ -48,6 +48,9 @@ function closeTopBanner() {
  * Hides the footer banner by adding the 'hide' class to it.
  */
 function closeFooterBanner() {
+    // no expiration date = session cookie
+    document.cookie = "footerBannerClosed=true; path=/";
+
 	document.getElementById("footer-banner").classList.add("hide");
 }
 
