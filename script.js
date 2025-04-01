@@ -3,6 +3,11 @@
  * Uses a short delay to ensure the transition is triggered.
  */
 function showTopBanner() {
+    if (sessionStorage.getItem('topBannerClosed') === 'true') {
+        return; // returns nothing so it wont do anything
+    }
+
+    // will run if the IF statement is false
 	var banner = document.getElementById("top-banner");
 	banner.classList.remove("hide");
 	setTimeout(function () {
