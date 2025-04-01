@@ -88,5 +88,12 @@ setTimeout(showTopBanner, 2000);
 setTimeout(showModal, 4000);
 
 function doNotTrack() {
-    
+    // searched up that navigator.doNotTrack is used for most browsers
+    if (navigator.doNotTrack === "1") {
+        localStorage.clear();
+        sessionStorage.clear();
+        document.cookie = ""; // Clear cookies
+        console.log("Tracking features disabled due to 'Do Not Track'.");
+    }
+
 }
