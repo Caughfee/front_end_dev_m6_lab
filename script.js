@@ -19,6 +19,12 @@ function showTopBanner() {
  * Displays the footer banner by removing the 'hide' class from it.
  */
 function showFooterBanner() {
+    // finds the specific cookie
+    if (document.cookie.split('; ').find(row => row.startsWith('footerBannerClosed='))?.split('=')[1] === 'true') {
+        console.log("Footer banner cookie exists and is set to true!");
+    }
+    
+
 	document.getElementById("footer-banner").classList.remove("hide");
 }
 
