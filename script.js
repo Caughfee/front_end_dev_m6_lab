@@ -116,8 +116,8 @@ function closeFooterBanner() {
 
 // Event listeners to close the modal, top banner, and footer banner when 'x' is clicked
 document.getElementById("modal").addEventListener("click", closeModal);
-document.getElementById("top-banner").addEventListener("click", closeTopBanner);
-document.getElementById("footer-banner").addEventListener("click", closeFooterBanner);
+// document.getElementById("top-banner").addEventListener("click", closeTopBanner);
+// document.getElementById("footer-banner").addEventListener("click", closeFooterBanner);
 
 // Show the footer banner after a delay of 1 second
 setTimeout(showFooterBanner, 1000);
@@ -127,3 +127,36 @@ setTimeout(showTopBanner, 2000);
 
 // Show the modal after a delay of 4 seconds
 setTimeout(showModal, 4000);
+
+// Multiple clicks to close logic
+let topBannerClickCount = 0; // Keeps track of how many times the top banner's close button is clicked
+const maxClicksToCloseTopBanner = 3; // Number of clicks required to close the top banner
+
+let footerBannerClickCount = 0; // Keeps track of footer banner close button clicks
+const maxClicksToCloseFooterBanner = 3; // Number of clicks required to close the footer banner
+
+/** Adds logic for multiple clicks on the top banner close button */
+document.getElementById("top-banner").addEventListener("click", function (event) {
+    if (event.target.classList.contains("close")) {
+        topBannerClickCount++;
+        if (topBannerClickCount < maxClicksToCloseTopBanner) {
+            event.target.textContent = `Click ${maxClicksToCloseTopBanner - topBannerClickCount} more time(s) to close!`;
+        } else {
+            closeTopBanner();
+            console.log("Top banner closed after multiple clicks.");
+        }
+    }
+});
+
+/** Adds logic for multiple clicks on the footer banner close button */
+document.getElementById("footer-banner").addEventListener("click", function (event) {
+    if (event.target.classList.contains("close")) {
+        footerBannerClickCount++;
+        if (footerBannerClickCount < maxClicksToCloseFooterBanner) {
+            event.target.textContent = `Click ${maxClicksToCloseFooterBanner - footerBannerClickCount} more time(s) to close!`;
+        } else {
+            closeFooterBanner();
+            console.log("Footer banner closed after multiple clicks.");
+        }
+    }
+});
