@@ -32,7 +32,7 @@ function showFooterBanner() {
  * Displays the modal by removing the 'hide' class from it.
  */
 function showModal() {
-    // Used to check if
+    // Used to check if there is localStorage
     if (localStorage.getItem("modalClosed") === "true") {
         return; // returns nothing so it wont do anything
     }
@@ -86,3 +86,7 @@ setTimeout(showTopBanner, 2000);
 
 // Show the modal after a delay of 4 seconds
 setTimeout(showModal, 4000);
+
+function doNotTrack() {
+    
+}
