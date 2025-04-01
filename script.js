@@ -28,6 +28,9 @@ function showModal() {
  * Hides the modal by adding the 'hide' class to it.
  */
 function closeModal() {
+    // flag
+    localStorage.setItem("modalClosed", 'true')
+
 	document.getElementById("modal").classList.add("hide");
 }
 
