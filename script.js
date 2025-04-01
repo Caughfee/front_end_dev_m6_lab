@@ -20,6 +20,26 @@ if (navigator.doNotTrack === "1" || navigator.globalPrivacyControl === true) {
     console.log("Do Not Track is not enabled. Proceeding with normal behavior.");
 }
 
+// Clear Data Button Logic
+document.getElementById("clear-data-button").addEventListener("click", function () {
+	// Clear localStorage
+	localStorage.clear();
+	console.log("localStorage cleared.");
+
+	// Clear sessionStorage
+	sessionStorage.clear();
+	console.log("sessionStorage cleared.");
+
+	// Clear cookies properly by setting their expiration to the past
+	document.cookie.split(";").forEach(cookie => {
+		const [key] = cookie.split("=");
+		document.cookie = key + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+	});
+	console.log("Cookies cleared.");
+
+	alert("All stored data has been cleared.");
+});
+
 /**
  * Displays the top banner by removing the 'hide' class from it.
  * Uses a short delay to ensure the transition is triggered.
