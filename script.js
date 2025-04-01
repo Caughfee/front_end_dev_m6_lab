@@ -21,6 +21,12 @@ function showFooterBanner() {
  * Displays the modal by removing the 'hide' class from it.
  */
 function showModal() {
+    // Used to check if
+    if (localStorage.getItem("modalClosed") === "true") {
+        return; // returns nothing so it wont do anything
+    }
+
+    // will run if the IF statement is false
 	document.getElementById("modal").classList.remove("hide");
 }
 
