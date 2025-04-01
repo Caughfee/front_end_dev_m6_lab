@@ -45,7 +45,7 @@ document.getElementById("clear-data-button").addEventListener("click", function 
  * Uses a short delay to ensure the transition is triggered.
  */
 function showTopBanner() {
-    if (sessionStorage.getItem('topBannerClosed') === 'true') {
+    if (sessionStorage.getItem('closeTopBanner') === 'true') {
         return; // returns nothing so it wont do anything
     }
 
@@ -64,6 +64,7 @@ function showFooterBanner() {
     // finds the specific cookie
     if (document.cookie.split('; ').find(row => row.startsWith('footerBannerClosed='))?.split('=')[1] === 'true') {
         console.log("Footer banner cookie exists and is set to true!");
+        return;
     }
     
 
